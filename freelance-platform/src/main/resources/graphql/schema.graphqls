@@ -1,0 +1,37 @@
+type Freelancer {
+  id: ID!
+  nom: String
+  email: String
+  bio: String
+  skills: [Skill]
+  links: [SocialLink]
+}
+
+type Skill {
+  id: ID!
+  nom: String
+}
+
+type SocialLink {
+  id: ID!
+  url: String
+  type: String
+}
+
+type Query {
+  freelancers: [Freelancer]
+  freelancer(id: ID!): Freelancer
+}
+
+type Mutation {
+  createFreelancer(nom: String!, email: String!, bio: String): Freelancer
+  deleteFreelancer(id: ID!): Boolean
+  addSkill(freelancerId: ID!, nom: String!): Skill
+  addSocialLink(freelancerId: ID!, url: String!, type: String!): SocialLink
+    deleteSkill(freelancerId: ID!, skillId: ID!): Boolean
+    deleteSocialLink(freelancerId: ID!, socialLinkId: ID!): Boolean
+    updateFreelancer(id: ID!, nom: String, email: String, bio: String): Freelancer
+    updateSkill(freelancerId: ID!, skillId: ID!, nom: String!): Skill
+    updateSocialLink(freelancerId: ID!, socialLinkId: ID!, url: String!, type: String!): SocialLink
+
+}

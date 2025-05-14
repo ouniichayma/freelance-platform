@@ -24,4 +24,53 @@ public class Freelancer {
 
     @OneToMany(mappedBy = "freelancer", cascade = CascadeType.ALL)
     private List<SocialLink> links;
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
+    }
+
+    public List<SocialLink> getLinks() {
+        return links;
+    }
+
+    public void setLinks(List<SocialLink> links) {
+        this.links = links;
+    }
 }
