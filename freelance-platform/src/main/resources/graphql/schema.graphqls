@@ -21,7 +21,11 @@ type SocialLink {
 type Query {
   freelancers: [Freelancer]
   freelancer(id: ID!): Freelancer
+  skills: [Skill]
+  socialLinks: [SocialLink]
 }
+
+
 
 type Mutation {
   createFreelancer(nom: String!, email: String!, bio: String): Freelancer

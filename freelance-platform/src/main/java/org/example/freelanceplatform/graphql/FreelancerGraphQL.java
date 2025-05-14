@@ -11,10 +11,11 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
-@Component
+@Controller
 public class FreelancerGraphQL {
 
     @Autowired
@@ -79,5 +80,27 @@ public class FreelancerGraphQL {
         link.setType(type);
         link.setFreelancer(freelancer);
         return socialLinkRepository.save(link);
+    }
+
+
+
+    @MutationMapping
+    public Freelancer updateFreelancer(@Argument Long id, @Argument String nom, @Argument String email, @Argument String bio) {
+        Freelancer freelancer = freelancerRepository.findById(id).orElse(null);
+        if (freelancer == null) return null;
+        freelancer.setNom(nom);
+        freelancer.setEmail(email);
+        freelancer.setBio(bio);
+        return freelancerRepository.save(freelancer);
+    }
+
+    @QueryMapping
+    public List<Skill> skills() {
+        return skillRepository.findAll();
+    }
+
+    @QueryMapping
+    public List<SocialLink> socialLinks() {
+        return socialLinkRepository.findAll();
     }
 }
