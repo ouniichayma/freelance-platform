@@ -68,33 +68,7 @@ Permettre à une startup de gérer les profils des freelances (création, mise �
 
 ---
 
-
-<details> <summary>🎓 Diagramme de classes Freelancer / Skill / SocialLink</summary>
-```mermaid
-classDiagram
-    class Freelancer {
-        Long id
-        String nom
-        String email
-        String bio
-    }
-
-    class Skill {
-        Long id
-        String nom
-    }
-
-    class SocialLink {
-        Long id
-        String url
-        String type
-    }
-
-    Freelancer "1" --> "*" Skill
-    Freelancer "1" --> "*" SocialLink
-```
-
-</details>
+![alt text](image.png)
 
 ## 📚  C’est quoi GraphQL ?
 GraphQL est un langage de requête pour les API. Il te permet de demander exactement les données
@@ -225,7 +199,7 @@ mutation {
 }
 
 
-🧑‍💻 Auteur
+###🧑‍💻 Auteur
 Projet réalisé par chayma ouni 
 Dans le cadre du module Web Services
  Génie Logiciel A
