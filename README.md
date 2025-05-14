@@ -67,8 +67,7 @@ Permettre à une startup de gérer les profils des freelances (création, mise �
 - `freelancer`: Référence au freelance
 
 ---
-
-![alt text](image.png)
+![alt text](image-1.png)
 
 ## 📚  C’est quoi GraphQL ?
 GraphQL est un langage de requête pour les API. Il te permet de demander exactement les données
