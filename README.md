@@ -83,17 +83,16 @@ Elle sert à récupérer des données depuis le serveur.
 Sert à créer, mettre à jour, ou supprimer des données.
 
 ## 🎯 Exemple Comparatif : REST vs GraphQL
-🔸 En REST :
-http
-Copier
-Modifier
+####🔸 En REST :
+```http
+
 GET /freelancers
 GET /freelancers/1
 GET /freelancers/1/skills
-🔹 En GraphQL :
-graphql
-Copier
-Modifier
+```
+####🔹 En GraphQL :
+```graphql
+
 query {
   freelancer(id: 1) {
     nom
@@ -102,7 +101,7 @@ query {
     }
   }
 }
-
+```
 
 ### 📥 Queries
 
@@ -114,6 +113,9 @@ type Query {
   socialLinks: [SocialLink]
 }
 
+
+
+```
 ###  ✏️ Mutations
 type Mutation {
   createFreelancer(nom: String!, email: String!, bio: String): Freelancer
@@ -165,6 +167,7 @@ mutation {
     nom
   }
 }
+
 ✏️ Modifier un freelance
 
 mutation {
@@ -199,7 +202,108 @@ mutation {
 }
 
 
-###🧑‍💻 Auteur
+
+
+
+
+
+
+
+
+
+
+
+
+## 🧭 Schéma des requêtes et réponses GraphQL
+🔍 Query : Obtenir tous les freelancers
+
+query {
+  freelancers {
+    id
+    nom
+    email
+    bio
+    skills {
+      id
+      nom
+    }
+    links {
+      id
+      url
+      type
+    }
+  }
+}
+📤 Réponse :
+
+
+{
+  "data": {
+    "freelancers": [
+      {
+        "id": "1",
+        "nom": "chayma",
+        "email": "chayma@gmail.com",
+        "bio": "Full-stack developer",
+        "skills": [
+          { "id": "1", "nom": "Java" }
+        ],
+        "links": [
+          { "id": "1", "url": "https://github.com/chayma", "type": "GitHub" }
+        ]
+      }
+    ]
+  }
+}
+🔍 Query : Obtenir un freelancer par ID
+
+query {
+  freelancer(id: 1) {
+    nom
+    email
+    bio
+  }
+}
+✏️ Mutation : Créer un freelancer
+
+mutation {
+  createFreelancer(nom: "chayma", email: "chayma@gmail.com", bio: "Freelancer in DevOps") {
+    id
+    nom
+  }
+}
+✏️ Mutation : Ajouter une compétence
+
+mutation {
+  addSkill(freelancerId: 1, nom: "ReactJS") {
+    id
+    nom
+  }
+}
+✏️ Mutation : Ajouter un lien social
+
+mutation {
+  addSocialLink(freelancerId: 1, url: "https://linkedin.com/in/chayma", type: "LinkedIn") {
+    id
+    type
+    url
+  }
+}
+✏️ Mutation : Mettre à jour un freelancer
+
+mutation {
+  updateFreelancer(id: 1, nom: "chayma ouni", email: "chayma11@newmail.com", bio: "Updated bio") {
+    id
+    nom
+  }
+}
+
+
+
+
+
+# 🧑‍💻 Auteur
+
 Projet réalisé par chayma ouni 
 Dans le cadre du module Web Services
  Génie Logiciel A
