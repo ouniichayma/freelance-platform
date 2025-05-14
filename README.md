@@ -117,6 +117,7 @@ type Query {
 
 ```
 ###  ✏️ Mutations
+```graphql
 type Mutation {
   createFreelancer(nom: String!, email: String!, bio: String): Freelancer
   deleteFreelancer(id: ID!): Boolean
@@ -130,12 +131,12 @@ type Mutation {
   updateSocialLink(freelancerId: ID!, socialLinkId: ID!, url: String!, type: String!): SocialLink
   deleteSocialLink(freelancerId: ID!, socialLinkId: ID!): Boolean
 }
+```
 
+## 📚 Exemples d’utilisation
+## 🔍 Consulter tous les freelances
 
-📚 Exemples d’utilisation
-🔍 Consulter tous les freelances
-
-
+```graphql
 query {
   freelancers {
     id
@@ -143,9 +144,10 @@ query {
     email
   }
 }
-🔍 Consulter un freelance par ID
+```
+## 🔍 Consulter un freelance par ID
 
-
+```graphql
 query {
   freelancer(id: 1) {
     nom
@@ -159,8 +161,10 @@ query {
     }
   }
 }
-➕ Créer un freelance
 
+```
+## ➕ Créer un freelance
+```graphql
 mutation {
   createFreelancer(nom: "chayma", email: "chayma@gmail.com", bio: "Développeur fullstack") {
     id
@@ -168,8 +172,10 @@ mutation {
   }
 }
 
-✏️ Modifier un freelance
+```
 
+## ✏️ Modifier un freelance
+```graphql
 mutation {
   updateFreelancer(id: 1, nom: "chayma Modifié", bio: "Expert Java") {
     id
@@ -177,13 +183,19 @@ mutation {
     bio
   }
 }
-➖ Supprimer un freelance
 
+```
+## ➖ Supprimer un freelance
+```graphql
 mutation {
   deleteFreelancer(id: 1)
 }
-➕ Ajouter une compétence
-graphql
+
+```
+
+## ➕ Ajouter une compétence
+```graphql
+
 
 mutation {
   addSkill(freelancerId: 1, nom: "Spring Boot") {
@@ -191,8 +203,10 @@ mutation {
     nom
   }
 }
-➕ Ajouter un lien social
 
+```
+## ➕ Ajouter un lien social
+```graphql
 mutation {
   addSocialLink(freelancerId: 1, url: "https://github.com/tarek", type: "GitHub") {
     id
@@ -200,7 +214,7 @@ mutation {
     type
   }
 }
-
+```
 
 
 
@@ -215,8 +229,8 @@ mutation {
 
 
 ## 🧭 Schéma des requêtes et réponses GraphQL
-🔍 Query : Obtenir tous les freelancers
-
+## 🔍 Query : Obtenir tous les freelancers
+```graphql
 query {
   freelancers {
     id
@@ -234,8 +248,9 @@ query {
     }
   }
 }
-📤 Réponse :
-
+```
+## 📤 Réponse :
+```graphql
 
 {
   "data": {
@@ -255,8 +270,12 @@ query {
     ]
   }
 }
-🔍 Query : Obtenir un freelancer par ID
 
+```
+## 🔍 Query : Obtenir un freelancer par ID
+
+
+```graphql
 query {
   freelancer(id: 1) {
     nom
@@ -264,24 +283,29 @@ query {
     bio
   }
 }
-✏️ Mutation : Créer un freelancer
-
+```
+## ✏️ Mutation : Créer un freelancer
+```graphql
 mutation {
   createFreelancer(nom: "chayma", email: "chayma@gmail.com", bio: "Freelancer in DevOps") {
     id
     nom
   }
 }
-✏️ Mutation : Ajouter une compétence
-
+```
+## ✏️ Mutation : Ajouter une compétence
+```graphql
 mutation {
   addSkill(freelancerId: 1, nom: "ReactJS") {
     id
     nom
   }
 }
-✏️ Mutation : Ajouter un lien social
 
+```
+## ✏️ Mutation : Ajouter un lien social
+
+```graphql
 mutation {
   addSocialLink(freelancerId: 1, url: "https://linkedin.com/in/chayma", type: "LinkedIn") {
     id
@@ -289,8 +313,9 @@ mutation {
     url
   }
 }
-✏️ Mutation : Mettre à jour un freelancer
-
+```
+## ✏️ Mutation : Mettre à jour un freelancer
+```graphql
 mutation {
   updateFreelancer(id: 1, nom: "chayma ouni", email: "chayma11@newmail.com", bio: "Updated bio") {
     id
@@ -298,7 +323,7 @@ mutation {
   }
 }
 
-
+```
 
 
 
