@@ -3,6 +3,8 @@ type Freelancer {
   nom: String
   email: String
   bio: String
+
+  imageUrl: String
   skills: [Skill]
   links: [SocialLink]
 }
@@ -23,12 +25,14 @@ type Query {
   freelancer(id: ID!): Freelancer
   skills: [Skill]
   socialLinks: [SocialLink]
+  getFreelancersBySkill(skillName: String!): [Freelancer]
+
 }
 
 
 
 type Mutation {
-  createFreelancer(nom: String!, email: String!, bio: String): Freelancer
+  createFreelancer(nom: String!, email: String!, bio: String,   base64Image: String ): Freelancer
   deleteFreelancer(id: ID!): Boolean
   addSkill(freelancerId: ID!, nom: String!): Skill
   addSocialLink(freelancerId: ID!, url: String!, type: String!): SocialLink
@@ -37,5 +41,19 @@ type Mutation {
     updateFreelancer(id: ID!, nom: String, email: String, bio: String): Freelancer
     updateSkill(freelancerId: ID!, skillId: ID!, nom: String!): Skill
     updateSocialLink(freelancerId: ID!, socialLinkId: ID!, url: String!, type: String!): SocialLink
+
+  removeSocialLinkFromFreelancer(freelancerId: ID!, socialLinkId: ID!): Boolean
+    removeSkillFromFreelancer(freelancerId: ID!, skillId: ID!): Boolean
+
+
+  updateFreelancerWithDetails(
+    id: ID!
+    nom: String!
+    email: String!
+    bio: String
+    skills: [String]
+    socialLinksUrls: [String]
+    socialLinksTypes: [String]
+  ): Freelancer
 
 }

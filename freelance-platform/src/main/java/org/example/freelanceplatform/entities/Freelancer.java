@@ -19,10 +19,18 @@ public class Freelancer {
     private String email;
     private String bio;
 
-    @OneToMany(mappedBy = "freelancer", cascade = CascadeType.ALL)
+
+
+    private String imagePath;
+
+
+
+
+
+    @OneToMany(mappedBy = "freelancer", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Skill> skills;
 
-    @OneToMany(mappedBy = "freelancer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "freelancer", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<SocialLink> links;
 
 
@@ -72,5 +80,14 @@ public class Freelancer {
 
     public void setLinks(List<SocialLink> links) {
         this.links = links;
+    }
+
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }
