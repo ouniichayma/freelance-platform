@@ -1,0 +1,109 @@
+<%- include('../layout/header') %>
+
+<h2>Modifier le Freelancer</h2>
+
+<form action="/freelancer/update" method="POST">
+  <!-- Identifiant caché -->
+  <input type="hidden" name="id" value="<%= freelancer.id %>">
+
+  <div class="form-group">
+    <label for="nom">Nom :</label>
+    <input type="text" class="form-control" name="nom" id="nom" value="<%= freelancer.nom %>" required>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email :</label>
+    <input type="email" class="form-control" name="email" id="email" value="<%= freelancer.email %>" required>
+  </div>
+
+  <div class="form-group">
+    <label for="bio">Bio :</label>
+    <textarea class="form-control" name="bio" id="bio" rows="4"><%= freelancer.bio %></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>Compétences :</label>
+    <div id="skills-container">
+      <% if (freelancer.skills && freelancer.skills.length > 0) { %>
+        <% freelancer.skills.forEach(skill => { %>
+          <input type="text" name="skills[]" class="form-control mb-2" value="<%= skill.nom %>">
+        <% }) %>
+      <% } else { %>
+        <input type="text" name="skills[]" class="form-control mb-2">
+      <% } %>
+    </div>
+    <button type="button" class="btn btn-secondary btn-sm" onclick="addSkill()">Ajouter compétence</button>
+  </div>
+
+  <div class="form-group">
+    <label>Liens Sociaux :</label>
+    <div id="social-links-container">
+      <% if (freelancer.links && freelancer.links.length > 0) { %>
+        <% freelancer.links.forEach(link => { %>
+          <div class="row mb-2">
+            <div class="col-md-8">
+              <input type="text" name="urls[]" class="form-control" placeholder="URL" value="<%= link.url %>">
+            </div>
+            <div class="col-md-4">
+              <input type="text" name="types[]" class="form-control" placeholder="Type (ex: LinkedIn)" value="<%= link.type %>">
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <div class="row mb-2">
+          <div class="col-md-8">
+            <input type="text" name="urls[]" class="form-control" placeholder="URL">
+          </div>
+          <div class="col-md-4">
+            <input type="text" name="types[]" class="form-control" placeholder="Type (ex: LinkedIn)">
+          </div>
+        </div>
+      <% } %>
+    </div>
+    <button type="button" class="btn btn-secondary btn-sm" onclick="addSocialLink()">Ajouter lien</button>
+  </div>
+
+  <button type="submit" class="btn btn-primary mt-3">Enregistrer</button>
+</form>
+
+<script>
+  function addSkill() {
+    const container = document.getElementById('skills-container');
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.name = 'skills[]';
+    input.className = 'form-control mb-2';
+    container.appendChild(input);
+  }
+
+  function addSocialLink() {
+    const container = document.getElementById('social-links-container');
+    const row = document.createElement('div');
+    row.className = 'row mb-2';
+
+    const col1 = document.createElement('div');
+    col1.className = 'col-md-8';
+    const urlInput = document.createElement('input');
+    urlInput.type = 'text';
+    urlInput.name = 'urls[]';
+    urlInput.className = 'form-control';
+    urlInput.placeholder = 'URL';
+
+    const col2 = document.createElement('div');
+    col2.className = 'col-md-4';
+    const typeInput = document.createElement('input');
+    typeInput.type = 'text';
+    typeInput.name = 'types[]';
+    typeInput.className = 'form-control';
+    typeInput.placeholder = 'Type (ex: GitHub)';
+
+    col1.appendChild(urlInput);
+    col2.appendChild(typeInput);
+    row.appendChild(col1);
+    row.appendChild(col2);
+
+    container.appendChild(row);
+  }
+</script>
+
+<%- include('../layout/footer') %>

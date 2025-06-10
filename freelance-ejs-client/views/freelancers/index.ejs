@@ -1,0 +1,70 @@
+<%- include('../layout/header') %>
+
+
+
+<h2>Résultats de la recherche</h2>
+
+<% if (!searchPerformed) { %>
+  <p>Veuillez saisir une compétence pour lancer la recherche.</p>
+<% } else if (matchedFreelancers && matchedFreelancers.length === 0) { %>
+  <p>Aucun freelancer trouvé avec cette compétence.</p>
+<% } else if (matchedFreelancers && matchedFreelancers.length > 0) { %>
+  <ul>
+    <% matchedFreelancers.forEach(f => { %>
+      <li>
+        <a href="/freelancer/<%= f.id %>"><%= f.nom %></a> - <%= f.email %>
+        <ul>
+          <% if (f.skills && f.skills.length > 0) { %>
+            <% f.skills.forEach(skill => { %>
+              <li><%= skill.nom %></li>
+            <% }) %>
+          <% } else { %>
+            <li>Aucune compétence renseignée</li>
+          <% } %>
+        </ul>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+
+
+<h1>Liste des Freelancers</h1>
+
+<div class="row">
+  <% if (freelancers && freelancers.length > 0) { %>
+    <% freelancers.forEach(f => { %>
+      <div class="col-md-4 mb-3">
+        <div class="card">
+<% if (f.imageUrl) { %>
+  <img src="<%= f.imageUrl %>" alt="Photo de <%= f.nom %>" class="card-img-top" style="max-height:200px; object-fit:cover;">
+  <script>
+    console.log("URL de l'image :", "<%= f.imageUrl %>");
+  </script>
+<% } %>
+
+
+
+          <div class="card-body">
+            <h5><%= f.nom %></h5>
+            <p><%= f.email %></p>
+            <% if (f.bio) { %>
+              <p><%= f.bio.substring(0, 100) %>...</p>
+            <% } else { %>
+              <p>Pas de bio disponible.</p>
+            <% } %>
+            <a href="/freelancer/<%= f.id %>" class="btn btn-sm btn-primary">Détails</a>
+
+            <a href="/freelancer/edit/<%= f.id %>" class="btn btn-sm btn-warning">Modifier</a>
+
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  <% } else { %>
+    <p>Aucun freelancer à afficher.</p>
+  <% } %>
+</div>
+
+
+<%- include('../layout/footer') %>

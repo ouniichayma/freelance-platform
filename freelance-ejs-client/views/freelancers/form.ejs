@@ -1,0 +1,72 @@
+<%- include('../layout/header') %>
+
+<h2>Ajouter un Freelancer</h2>
+<form  id="freelancerForm" method="POST" action="/freelancer/create">
+  <div class="mb-3">
+    <label for="nom" class="form-label">Nom</label>
+    <input type="text" name="nom" id="nom" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" name="email" id="email" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label for="bio" class="form-label">Bio</label>
+    <textarea name="bio" id="bio" class="form-control" rows="4" required></textarea>
+  </div>
+
+
+  <div class="mb-3">
+    <label for="image" class="form-label">Photo</label>
+    <input type="file" id="image" accept="image/*" class="form-control">
+  </div>
+
+  <input type="hidden" name="base64Image" id="base64Image">
+
+
+
+
+  <button type="submit" class="btn btn-success">Créer</button>
+</form>
+
+
+
+
+
+
+<script>
+  const form = document.getElementById('freelancerForm');
+  const fileInput = document.getElementById('image');
+  const base64Input = document.getElementById('base64Image');
+
+  fileInput.addEventListener('change', () => {
+    const file = fileInput.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      base64Input.value = e.target.result; // chaîne base64 complète avec data:image/png;base64,...
+    };
+    reader.readAsDataURL(file);
+  });
+
+  form.addEventListener('submit', (e) => {
+    // optionnel: vérifier que base64Input est bien rempli avant envoi
+    if (fileInput.files.length > 0 && !base64Input.value) {
+      e.preventDefault();
+      alert('Chargement de l’image en cours, veuillez patienter.');
+    }
+  });
+</script>
+
+
+
+
+
+<%- include('../layout/footer') %>
+
+
+
+
+
+

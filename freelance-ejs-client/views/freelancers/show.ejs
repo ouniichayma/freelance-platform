@@ -1,0 +1,69 @@
+<%- include('../layout/header') %>
+
+<h2><%= freelancer.nom %></h2>
+<p><strong>Email:</strong> <%= freelancer.email %></p>
+<p><strong>Bio:</strong> <%= freelancer.bio %></p>
+
+<h3>Compétences</h3>
+<ul>
+  <% if (freelancer.skills && freelancer.skills.length > 0) { %>
+    <% freelancer.skills.forEach(skill => { %>
+      <li>
+        <%= skill.nom %>
+        <form action="/freelancers/<%= freelancer.id %>/skills/<%= skill.id %>?_method=DELETE" method="POST" style="display:inline;">
+          <button type="submit" class="btn btn-sm btn-danger">🗑️</button>
+        </form>
+      </li>
+    <% }) %>
+  <% } else { %>
+    <li>Aucune compétence</li>
+  <% } %>
+</ul>
+
+
+<h3>Réseaux sociaux</h3>
+<ul>
+  <% if (freelancer.links && freelancer.links.length > 0) { %>
+    <% freelancer.links.forEach(link => { %>
+      <li>
+        <strong><%= link.type %>:</strong> <a href="<%= link.url %>" target="_blank"><%= link.url %></a>
+        <form action="/freelancers/<%= freelancer.id %>/links/<%= link.id %>?_method=DELETE" method="POST" style="display:inline;">
+          <button type="submit" class="btn btn-sm btn-danger">🗑️</button>
+        </form>
+      </li>
+    <% }) %>
+  <% } else { %>
+    <li>Aucun lien social</li>
+  <% } %>
+</ul>
+
+
+
+
+
+
+
+
+
+<h3>Ajouter une compétence</h3>
+<form action="/freelancers/<%= freelancer.id %>/addSkill" method="POST">
+  <input type="text" name="nom" placeholder="Nom de la compétence" required>
+  <button type="submit">Ajouter</button>
+</form>
+
+<h3>Ajouter un lien social</h3>
+<form action="/freelancers/<%= freelancer.id %>/addSocialLink" method="POST">
+  <input type="text" name="type" placeholder="Type (ex: Twitter)" required>
+  <input type="url" name="url" placeholder="URL" required>
+  <button type="submit">Ajouter</button>
+</form>
+
+
+
+
+
+<a href="/" class="btn btn-secondary mt-3">Retour</a>
+
+
+
+<%- include('../layout/footer') %>
