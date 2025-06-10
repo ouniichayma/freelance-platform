@@ -30,6 +30,16 @@ type Query {
 }
 
 
+type AuthPayload {
+  token: String
+  admin: Admin
+}
+
+type Admin {
+  id: ID!
+  username: String!
+}
+
 
 type Mutation {
   createFreelancer(nom: String!, email: String!, bio: String,   base64Image: String ): Freelancer
@@ -45,6 +55,8 @@ type Mutation {
   removeSocialLinkFromFreelancer(freelancerId: ID!, socialLinkId: ID!): Boolean
     removeSkillFromFreelancer(freelancerId: ID!, skillId: ID!): Boolean
 
+  register(username: String!, password: String!): AuthPayload!
+  login(username: String!, password: String!): AuthPayload!
 
   updateFreelancerWithDetails(
     id: ID!
