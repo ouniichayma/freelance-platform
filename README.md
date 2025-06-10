@@ -9,6 +9,7 @@ Une plateforme destinée aux freelances permettant de gérer leurs profils, comp
 
 
 Permettre à une startup de gérer les profils des freelances (création, mise à jour, suppression) avec :
+-authentification d'admin
 - Données personnelles (nom, email, bio)
 - Compétences (skills)
 - Liens sociaux (GitHub, LinkedIn...)
@@ -22,6 +23,7 @@ Permettre à une startup de gérer les profils des freelances (création, mise �
 
 | Fonctionnalité                     | Type de service (CRUD)  |
 |-----------------------------------|--------------------------|
+|athentification admin              |register /login           |
 | Créer un profil utilisateur       | Create                   |
 | Modifier un profil utilisateur    | Update                   |
 | Supprimer un profil utilisateur   | Delete                   |
@@ -41,11 +43,18 @@ Permettre à une startup de gérer les profils des freelances (création, mise �
 - MySQL
 - Lombok
 - Java 17
+-  - frontend ejs 
 
 ---
 
 
 ## 🧱 Entités
+
+### ✅ admin
+
+- `email`: String
+- `mdp`: String
+
 
 ### ✅ Freelancer
 - `id`: ID
